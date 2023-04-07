@@ -5,7 +5,7 @@
 
   const getPosts = async function () {
     try {
-      const api = "http://localhost:3000";
+      const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app";
       const response = await fetch(`${api}/getboard`);
       data = await response.json();
 

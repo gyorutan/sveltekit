@@ -9,7 +9,7 @@
       loginPw: loginPw,
     };
 
-    const api = "http://localhost:3000";
+    const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app";
 
     const response = await fetch(`${api}/login`, {
       method: "POST",

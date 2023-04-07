@@ -3,6 +3,8 @@
 
   export let data;
 
+  const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app";
+
   // console.log(data);
   // console.log(data.post._id);
 
@@ -42,7 +44,6 @@
 
   const handleSubmit = async () => {
     const id = data.post._id;
-    const api = "http://localhost:3000";
     const commentData = {
       comment: comment,
       commentBy: commentBy,
@@ -67,7 +68,6 @@
 
         try {
             const id = data.post._id;
-            const api = 'http://localhost:3000'
             await fetch(`${api}/board/${id}`, {
                 method : "DELETE", 
             });
@@ -81,7 +81,6 @@
         try {
             const id = commentId;
             const postId = data.post._id
-            const api = 'http://localhost:3000'
             await fetch(`${api}/comment/${id}`, {
                 method : "DELETE", 
                 headers: {
