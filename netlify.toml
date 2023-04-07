@@ -1,3 +1,7 @@
 [build]
   command = "npm run build"
+<<<<<<< HEAD
   publish = "build"
+=======
+  publish = "build"
+>>>>>>> 80a5050d1d40d8d80a860da6184e2832f4e71a97
