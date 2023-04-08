@@ -255,6 +255,9 @@
     .comment-container {
       width: 750px;
     }
+    .comment-list {
+      width: 750px;
+    }
     .comment-form {
       width: 750px;
     }
