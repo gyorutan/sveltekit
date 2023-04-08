@@ -136,6 +136,10 @@
             }} style="text-align : right">
                 <img src="../delete.png" alt="">
             </th>
+            {:else}
+            <th style="text-align : right">
+               -
+            </th>
             {/if}
           </tr>
         {/each}
