@@ -1,4 +1,7 @@
 <script>
+
+const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app";
+
   let date = new Date();
 
   let username = "";
@@ -9,10 +12,12 @@
 
   // console.log(createdAt)
 
-  const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app";
-
-
   const checkUsername = async () => {
+    if(username == "") {
+      alert('닉네임을 입력해주세요')
+      return
+    }
+
     try {
       const response = await fetch(`${api}/checkusername`, {
         method: "POST",
@@ -35,7 +40,6 @@
       console.log(error);
     };
   };
-
 
   const handleSubmit = async () => {
     const registerData = {

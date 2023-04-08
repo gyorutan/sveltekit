@@ -1,6 +1,8 @@
 <script>
   import jwtdecode from "jwt-decode";
 
+  const api = "http://localhost:3000";
+
   let username = "";
   let title = "";
   let content = "";
@@ -23,7 +25,8 @@
   if (typeof window !== "undefined") {
     const token = localStorage.getItem("USER");
     if (!token) {
-      window.location.href = "/login";
+      alert('로그인이 필요합니다')
+      window.location.href = "/";
     }
     const decodedToken = jwtdecode(token);
     userId = decodedToken.userId;
@@ -31,7 +34,6 @@
   }
 
   const handleSubmit = async () => {
-    const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app";
     const postData = {
       title: title,
       content: content,

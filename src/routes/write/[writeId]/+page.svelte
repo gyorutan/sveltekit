@@ -1,6 +1,8 @@
 <script>
     import jwtdecode from "jwt-decode";
   
+    const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app";
+
     export let data
     console.log(data);
 
@@ -36,7 +38,6 @@
   
     const handleSubmit = async () => {
       const id = data.post._id;
-      const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app";
       const postData = {
         title: title,
         content: content,

@@ -1,9 +1,9 @@
 <script>
   import jwtdecode from "jwt-decode";
 
-  export let data;
-
   const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app";
+
+  export let data;
 
   // console.log(data);
   // console.log(data.post._id);
@@ -32,7 +32,8 @@
   if (typeof window !== "undefined") {
     const token = localStorage.getItem("USER");
     if (!token) {
-      window.location.href = "/login";
+      alert('로그인이 필요합니다');
+      window.location.href = "/";
     }
     const decodedToken = jwtdecode(token);
     commentBy = decodedToken.username;

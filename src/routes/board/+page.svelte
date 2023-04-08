@@ -1,11 +1,13 @@
 <script>
   import { onMount } from "svelte";
 
+  const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app";
+
   let data = [];
 
   const getPosts = async function () {
     try {
-      const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app";
+
       const response = await fetch(`${api}/getboard`);
       data = await response.json();
 
@@ -20,11 +22,13 @@
 </script>
 
 <div class="container mt-4">
-  <div class="board-header">
-    <h2>게시판</h2>
-    <a href="/write" type="button" class="btn btn-light btn-write">글쓰기</a>
+  <div class="main-text">
+    <p>자유게시판</p>
   </div>
-  <div class="table-container">
+  <div class="write-link">
+    <a href="/write" class="btn btn-light btn-write">글쓰기</a>
+  </div>
+    <div class="table-container">
     <table style="width: 100%">
       <colgroup>
         <col style="width: 10%" />
@@ -58,6 +62,9 @@
   a {
     color: black;
   }
+  .main-text {
+    font-size: 25px;
+  }
   .thead-item {
     height: 40px;
     border-bottom: 1px solid #29367c;
@@ -68,13 +75,11 @@
     border-top: 2px solid #29367c;
     border-bottom: 2px solid #29367c;
   }
-  .board-header {
-    display: flex;
-    justify-content: space-between;
+  .write-link {
+    text-align: right;
   }
   .btn-write {
-    margin-bottom: 5px;
-    border: 2px solid black;
+    border: 1px solid #29367c;
   }
   .post-list {
     height: 40px;
