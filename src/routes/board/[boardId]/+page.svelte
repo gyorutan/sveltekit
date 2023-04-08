@@ -137,7 +137,7 @@
                 <img src="../delete.png" alt="">
             </th>
             {:else}
-            <th style="text-align : right">
+            <th style="text-align : center">
                -
             </th>
             {/if}
