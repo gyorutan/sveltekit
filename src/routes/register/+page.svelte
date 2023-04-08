@@ -81,7 +81,7 @@ const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app"
     // console.log(data.success);
     if (data.success) {
       alert("회원가입 성공!");
-      window.location.href = "/login";
+      window.location.href = "/";
     } else {
       alert("회원가입에 실패했습니다");
       {username = "", loginId = "", loginPw = ""}
