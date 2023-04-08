@@ -32,8 +32,10 @@
   </div>
 </div>
 
+<div class="slot">
+  <slot />
+</div>
 
-<slot />
 
 <style>
 
@@ -89,5 +91,16 @@
   .search-btn {
     border: 2px solid #3b4890;
     margin-left: 10px;
+  }
+  @media only screen and (max-width: 1000px) {
+    .slot {
+      width: 1000px;
+    }
+    .navbar {
+      width: 1000px;
+    }
+    .header {
+      width: 1000px;
+    }
   }
 </style>
