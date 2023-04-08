@@ -248,4 +248,23 @@
   * {
     font-family: "nanumsquare";
   }
+  @media only screen and (max-width: 1000px) {
+    .post-container {
+      width: 750px;
+    }
+    .comment-container {
+      width: 750px;
+    }
+    .comment-form {
+      width: 750px;
+    }
+    .comment-input {
+    width: 600px;
+    height: 100px;
+    padding: 0 12px;
+    line-height: 35px;
+    border: 1px solid #cecdce;
+    color: #333;
+  }
+  }
 </style>

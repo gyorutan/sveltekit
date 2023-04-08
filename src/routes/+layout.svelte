@@ -94,13 +94,13 @@
   }
   @media only screen and (max-width: 1000px) {
     .slot {
-      width: 1000px;
+      width: 740px;
     }
     .navbar {
       width: 1000px;
     }
     .header {
-      width: 1000px;
+      width:1000px;
     }
   }
 </style>
