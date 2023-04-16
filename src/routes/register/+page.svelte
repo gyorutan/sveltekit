@@ -1,6 +1,5 @@
 <script>
-
-const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app";
+  const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app";
 
   let date = new Date();
 
@@ -30,10 +29,10 @@ const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app"
 
       console.log(duplication.success)
       if (duplication.success) {
-        alert('사용가능한 닉네임 입니다')
+        alert('使用可能なハンドルネームです')
         checkedUsername = duplication.username
       } else {
-        alert('이미 사용중인 닉네임 입니다')
+        alert('既に存在するハンドルネームです')
         { username = "" }
       };
     } catch (error) {
@@ -50,22 +49,22 @@ const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app"
     };
 
     if(username == "") {
-      alert('닉네임을 입력해주세요');
+      alert('ハンドルネームを入力してください');
       return
     };
 
     if(loginId == "") {
-      alert('아이디를 입력해주세요');
+      alert('ログインIDを入力してください');
       return
     };
 
     if(loginPw == "") {
-      alert('비밀번호를 입력해주세요');
+      alert('Passwordを入力してください');
       return
     };
 
     if(username != checkedUsername){
-      alert('중복검사를 해주세요');
+      alert('重複確認をしてください');
       return
     };
 
@@ -80,10 +79,10 @@ const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app"
     const data = await response.json();
     // console.log(data.success);
     if (data.success) {
-      alert("회원가입 성공!");
-      window.location.href = "/";
+      alert("新規登録を完了しました");
+      window.location.href = "/login";
     } else {
-      alert("회원가입에 실패했습니다");
+      alert("新規登録に失敗しました");
       {username = "", loginId = "", loginPw = ""}
     }
   };
@@ -92,7 +91,7 @@ const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app"
 <div class="container">
   <div class="card shadow" style="width: 400px">
     <div class="card-body">
-      <h4 class="">회원가입</h4>
+      <h4 style="font-weight: bold">新規登録</h4>
       <hr />
       <form on:submit|preventDefault={handleSubmit}>
         <div style="text-align : center">
@@ -100,7 +99,7 @@ const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app"
             <label
               for="nickname"
               style="font-size : 20px; font-weight: bold"
-              class="mt-1">닉네임</label
+              class="mt-1">ハンドルネーム</label
             ><br />
             <input
               type="text"
@@ -109,7 +108,7 @@ const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app"
               bind:value={username}
             /><br />
             <button on:click={checkUsername} type="button" class="btn btn-outline-danger mt-2">
-              중복확인
+              重複確認
             </button>
           </div>
           <div class="form-group mt-3">
@@ -132,7 +131,7 @@ const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app"
         </div>
         <hr />
         <div class="submitbtn">
-          <button type="submit" class="btn btn-primary"> 회원가입 </button>
+          <button type="submit" class="btn btn-secondary"> OK </button>
         </div>
       </form>
       <div />
@@ -142,7 +141,7 @@ const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app"
 
 <style>
   * {
-    font-family: "nanumsquare";
+    font-family: 'Noto Sans JP', sans-serif;
   }
   .card {
     margin: auto;

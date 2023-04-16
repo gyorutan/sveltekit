@@ -1,16 +1,13 @@
 <script>
-  import { onMount } from "svelte";
-
   const api = "https://port-0-sveltekit-server-1093j2alg73daic.sel3.cloudtype.app";
+  import { onMount } from "svelte";
 
   let data = [];
 
   const getPosts = async function () {
     try {
-
       const response = await fetch(`${api}/getboard`);
       data = await response.json();
-
     } catch (error) {
       console.log(error);
     }
@@ -22,70 +19,58 @@
 </script>
 
 <div class="container mt-4">
-  <div class="main-text">
-    <p>자유게시판</p>
+  <div class="d-flex" style="justify-content: space-between;">
+    <div class="main-text">
+      <h2>掲示板</h2>
+    </div>
+    <div style="text-align: center;">
+      <a href="/write"><img src="../create.png" alt="" /></a>
+    </div>
   </div>
-  <div class="write-link">
-    <a href="/write" class="btn btn-light btn-write">글쓰기</a>
-  </div>
-    <div class="table-container">
-    <table style="width: 100%">
-      <colgroup>
-        <col style="width: 10%" />
-        <col style="width: 55%" />
-        <col style="width: 10%" />
-        <col style="width: 25%" />
-      </colgroup>
-      <thead class="thead-item">
-        <tr class="col-colgroup">
-          <th scope="col">번호</th>
-          <th scope="col">글제목</th>
-          <th scope="col">글쓴이</th>
-          <th style="text-align: center;" scope="col">작성일</th>
-        </tr>
-      </thead>
-      <tbody>
-        {#each data as post}
-          <tr class="post-list">
-            <th>{post.postNumber}</th>
-            <th><a href="/board/{post._id}" style="white-space: pre;" >{post.title}</a></th>
-            <th>{post.writer.username}</th>
-            <th style="text-align: center;" >{post.createdAt}</th>
-          </tr>
-        {/each}
-      </tbody>
-    </table>
+  <hr />
+  <div class="list-bg">
+    {#each data as post}
+      <div class="list-item">
+        <p>
+          No. {post.postNumber}　|　{post.writer.username}　|　{post.createdAt}
+        </p>
+        <hr />
+        <a href="/board/{post._id}">
+          {post.title}
+        </a>
+      </div>
+    {/each}
   </div>
 </div>
 
 <style>
+  * {
+    font-family: "Noto Sans JP", sans-serif;
+  }
   a {
     color: black;
   }
   .main-text {
     font-size: 25px;
   }
-  .thead-item {
-    height: 40px;
-    border-bottom: 1px solid #29367c;
+  .list-bg {
+    background: rgb(255, 255, 255);
+    padding: 10px;
   }
-  .table-container {
-    width: 100%;
-    margin-top: 10px;
-    border-top: 2px solid #29367c;
-    border-bottom: 2px solid #29367c;
+  .list-item {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: rgb(112, 112, 112) 0px 2px 4px 0px;
   }
-  .write-link {
-    text-align: right;
+  .list-item a {
+    font-size: 20px;
+    font-weight: 800;
+    margin: 0;
   }
-  .btn-write {
-    border: 1px solid #29367c;
-  }
-  .post-list {
-    height: 40px;
-    border-bottom: 1px solid gray;
-  }
-  * {
-    font-family: "nanumsquare";
+  .list-item p {
+    color: black;
+    margin: 5px 0px;
   }
 </style>

@@ -1,49 +1,126 @@
 <script>
+  import jwtdecode from "jwt-decode";
+  import { onMount } from "svelte";
+
+  let username = "";
+  let userId = "";
+  let isLoggedIn = false;
+
+  async function loginCheck() {
+    const token = localStorage.getItem("USER");
+    if (!token) {
+      isLoggedIn = false;
+    }
+    if (token) {
+      const decodedToken = jwtdecode(token);
+      username = decodedToken.username;
+      userId = decodedToken.userId;
+      isLoggedIn = true;
+      console.log(username);
+      console.log(userId);
+    }
+  }
+
+  async function logout() {
+    localStorage.removeItem("USER");
+    isLoggedIn = false;
+    window.location.href = "/login";
+  }
+
+  onMount(() => {
+    loginCheck();
+  });
 </script>
 
 <div class="container">
   <nav class="navbar navbar-light bg-white">
     <a class="navbar-brand" href="/" style="color: black; font-size : 40px">
-      <img class="logo-img" src="../logo.png" alt=""> 카시노키</a>
-    <div class="search-container">
-      <div class="input-container">
-        <input class="search-input"><button class="btn btn-light search-btn">검색</button>
-      </div>
+      Kasinoki</a
+    >
+    <!-- Dropleft Menu -->
+    <div class="btn-group dropleft">
+      {#if !isLoggedIn}
+        <button
+          type="button"
+          class="btn btn-outline-dark dropdown-toggle"
+          data-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img class="userx-img" src="../userx.png" alt="" />
+        </button>
+        <div class="dropdown-menu">
+          <a
+            style="color: black; text-decoration: none;"
+            href="/login"
+            class="dropdown-item"
+          >
+            ログイン
+          </a>
+          <a
+            style="color: black; text-decoration: none;"
+            href="/register"
+            class="dropdown-item"
+          >
+            新規登録
+          </a>
+        </div>
+      {:else}
+        <button
+          style="color:black; font-weight: bold;"
+          type="button"
+          class="btn btn-outline-secondary dropdown-toggle"
+          data-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img class="user-img" src="../user.png" alt="" />
+          {username}
+        </button>
+        <div class="dropdown-menu">
+          <a
+            style="color: black; text-decoration: none;"
+            href="/user/{userId}"
+            class="dropdown-item"
+          >
+            プロフィール
+          </a>
+          <button on:click={logout} class="dropdown-item"> ログアウト </button>
+        </div>
+      {/if}
     </div>
-    <div></div>
   </nav>
 </div>
-<div class="header">
+<div class="container header">
   <div class="container">
     <div class="link-container">
       <div class="header-link">
-        <a href="/">홈으로</a>
+        <a href="/">Main</a>
       </div>
       <div class="header-link">
-        <a href="/board">자유게시판</a>
-      </div>
-      <!-- <div class="header-link">
-        <a href="/#">게시판2</a>
+        <a href="/board">掲示板</a>
       </div>
       <div class="header-link">
-        <a href="/#">게시판3</a>
-      </div> -->
+        <a href="/board/bandoren">バンド練習</a>
+      </div>
+      <div class="header-link">
+        <a href="/board/live">ライブ日程</a>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="slot">
-  <slot />
-</div>
-
+<slot />
 
 <style>
-
-  .logo-img {
-    margin-bottom: 5px;
+  .userx-img {
+    width: 30px;
+    height: 30px;
+  }
+  .user-img {
+    width: 30px;
+    height: 30px;
   }
   * {
-    font-family: "nanumsquare";
+    font-family: "Noto Sans JP", sans-serif;
   }
   a:not(.no-style) {
     text-decoration: none;
@@ -61,7 +138,7 @@
     font-weight: bold;
   }
   .header {
-    background: #3b4890;
+    background: gray;
     height: 50px;
   }
   .link-container {
@@ -70,37 +147,10 @@
     margin: auto;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 30px;
   }
-  .header-link {
-    margin-left: 20px;
-  }
-  .search-container {
-    width: 400px;
-    margin-right: 200px;
-  }
-  .search-input {
-    width: 300px;
-    height: 40px;
-    padding: 0 12px;
-    line-height: 35px;
-    border: 4px solid #3b4890;
-    color: #333;
-    outline: none;
-  }
-  .search-btn {
-    border: 2px solid #3b4890;
-    margin-left: 10px;
-  }
-  @media only screen and (max-width: 1000px) {
-    .slot {
-      width: 740px;
-    }
-    .navbar {
-      width: 1000px;
-    }
-    .header {
-      width:1000px;
-    }
-  }
+
+  /* @media only screen and (max-width: 1000px) {
+
+  } */
 </style>
